@@ -41,7 +41,7 @@ class DoManager(object):
                 'backups_enabled': backups_enabled,
             }
             if ssh_key_ids:
-                params['ssh_keys'] = ssh_key_ids
+                params['ssh_keys[]'] = ssh_key_ids
             if user_data:
                 params['user_data'] = user_data
             json = self.request('/droplets', params=params, method='POST')
