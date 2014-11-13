@@ -29,7 +29,7 @@ class DoManager(object):
 
     def new_droplet(self, name, size_id, image_id, region_id,
             ssh_key_ids=None, virtio=False, private_networking=False,
-            backups_enabled=False):
+            backups_enabled=False, user_data=None):
         if self.api_version == 2:
             params = {
                 'name': name,
@@ -42,6 +42,8 @@ class DoManager(object):
             }
             if ssh_key_ids:
                 params['ssh_keys'] = ssh_key_ids
+            if user_data:
+                params['user_data'] = user_data
             json = self.request('/droplets', params=params, method='POST')
         else:
             params = {
